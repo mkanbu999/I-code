@@ -1,14 +1,34 @@
 package stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Filter {
     public static void main(String[] args) {
-       /* List<Integer> list = Arrays.asList(1, 2, 3, 4, 4);
+        List<Integer> list = new ArrayList<>(Arrays.asList(6, 2, 3, 4, 4));
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(10, 2, 3, 4, 4));
+        list.addAll(list2);
+        List<List<String>> listOfLists = Arrays.asList(
+                Arrays.asList("hello", "world"),
+                Arrays.asList("java", "streams"),
+                Arrays.asList("flatMap", "example")
+        );
 
-        list.stream()
+       List<String> s= listOfLists.stream()
+                        .flatMap(List::stream)
+                                .collect(Collectors.toList());
+
+
+
+        System.out.println(list2.stream().reduce(0, Integer::sum));
+
+//        list.stream()
+//                .sorted()
+//                .forEach(System.out::print);
+
+     /*     list.stream()
                 .filter(n -> n > 2)
                 .forEach(System.out::print);
 
@@ -25,7 +45,7 @@ public class Filter {
                 .reduce(0, Integer::sum);*/
 
 
-        List<String> words = Arrays.asList("hello", "world", "java", "streams");
+//        List<String> words = Arrays.asList("hello", "world", "java", "streams");
      /*   words.stream()
                 .map(String::toUpperCase)
                 .forEach(System.out::println);
@@ -46,25 +66,25 @@ public class Filter {
                 .filter(word -> word.equals("hello"))
                 .collect(Collectors.toList()); */
 
-        List<List<String>> listOfLists = Arrays.asList(
-                Arrays.asList("hello", "world"),
-                Arrays.asList("java", "streams"),
-                Arrays.asList("flatMap", "example")
-        );
-
-        List<String> flattenedList = listOfLists.stream()
-                .flatMap(List::stream)
-                .toList();
-
-        List<String> filteredList = listOfLists.stream()
-                .flatMap(List::stream)
-                .filter(word -> word.equals("hello"))
-                .toList();
-        //[hello, hello]
-
-        List<String> filteredFlattenedList = listOfLists.stream()
-                .filter(innerList -> innerList.contains("hello"))
-                .flatMap(List::stream)
-                .toList();
+//        List<List<String>> listOfLists = Arrays.asList(
+//                Arrays.asList("hello", "world"),
+//                Arrays.asList("java", "streams"),
+//                Arrays.asList("flatMap", "example")
+//        );
+//
+//        List<String> flattenedList = listOfLists.stream()
+//                .flatMap(List::stream)
+//                .toList();
+//
+//        List<String> filteredList = listOfLists.stream()
+//                .flatMap(List::stream)
+//                .filter(word -> word.equals("hello"))
+//                .toList();
+//        //[hello, hello]
+//
+//        List<String> filteredFlattenedList = listOfLists.stream()
+//                .filter(innerList -> innerList.contains("hello"))
+//                .flatMap(List::stream)
+//                .toList();
     }
 }
