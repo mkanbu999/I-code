@@ -13,6 +13,7 @@ public class FibonacciSeries {
            System.out.println(a);
            c = a + b;
            a =b;
+
            b =c;
        }
 
