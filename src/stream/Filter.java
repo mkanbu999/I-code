@@ -3,6 +3,7 @@ package stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Filter {
@@ -20,6 +21,20 @@ public class Filter {
                         .flatMap(List::stream)
                                 .collect(Collectors.toList());
 
+
+        String a = "kjkkkk jjjjjjj kk";
+
+
+        var b = Arrays.stream(a.split(" "))
+                .collect(Collectors.groupingBy(
+                        e -> e,                 // key = word length
+                        Collectors.summingInt(String::length) // value = total length
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .findFirst()
+                .get();
 
 
         System.out.println(list2.stream().reduce(0, Integer::sum));
