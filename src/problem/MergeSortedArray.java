@@ -10,7 +10,6 @@ public class MergeSortedArray {
 //        sortArray(a, b);
 //        Arrays.sort(a);
 //        Arrays.stream(a).forEach(System.out::println);
-        sortArray();
     }
 
     private static void sortArray(int[] a, int[] b) {
@@ -21,37 +20,31 @@ public class MergeSortedArray {
         }
     }
 
-    private static void sortArray() {
 
-        int[] a = {1,3};
-        int[] b = {2,5};
 
-        int[] c = new int[a.length + b.length];
+        public static void merge(int[] a, int[] b) {
+            int i = 0, j = 0, k = 0;
+            int[] result = new int[a.length + b.length];
 
-        int left = 0;
-        int right = 0;
-
-        for(int  i = 0; i<c.length ; i++){
-
-               if( left >= a.length){
-                c[i] = b[right++];
+            while (i < a.length && j < b.length) {
+                if (a[i] <= b[j]) {
+                    result[k++] = a[i++];
+                } else {
+                    result[k++] = b[j++];
+                }
             }
-            else if( right >= b.length){
-                   c[i] = a[left++];
-               }
-           else if( a[left] >= b[right]){
-                c[i] = b[right];
-                right++; //1
+
+            // Copy remaining elements
+            while (i < a.length) {
+                result[k++] = a[i++];
             }
-            else{
-                c[i] =a[left];
-                left ++; //1,
+
+            while (j < b.length) {
+                result[k++] = b[j++];
             }
+
+
         }
-
-        Arrays.stream(c).forEach(System.out::print);
-    }
-
 
 
 }
