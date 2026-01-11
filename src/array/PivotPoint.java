@@ -1,24 +1,40 @@
 package array;
 
+import java.util.Arrays;
+
 public class PivotPoint {
 
     public static void main(String[] args) {
 
-        int [] a = {1,2,3,6,2,4};
+        int [] a = {1,1,1,3,1,7,1,2,2,2};
+        int totalSum = Arrays.stream(a).sum();
+        int leftSum  =0;
 
-        for(int i = 1; i< a.length-1 ; i++){
 
-            int left = findLeftSum(i, a);
-            int right = findRightSum(i, a);
+        for(int i = 0; i< a.length-1 ; i++){
+            int rs = totalSum - leftSum - a[i];
+                    if(rs == leftSum){
+                        System.out.println(i);
+                        break;
+                    }
+                    leftSum = leftSum + a[i];
 
-            if(left == right){
-                System.out.println(i);
-                break;
-            }
-            if(i == a.length-2){
-                System.out.println("No pivot");
-            }
+
         }
+
+//        for(int i = 1; i< a.length-1 ; i++){
+//
+//            int left = findLeftSum(i, a);
+//            int right = findRightSum(i, a);
+//
+//            if(left == right){
+//                System.out.println(i);
+//                break;
+//            }
+//            if(i == a.length-2){
+//                System.out.println("No pivot");
+//            }
+//        }
 
     }
 
