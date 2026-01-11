@@ -1,32 +1,27 @@
 package problem;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Test {
 
+            public static List<List<String>> groupAnagrams(String[] strs) {
 
+                Map<String, List<String>> map = new HashMap<>();
 
-        public static void main(String[] args) {
-            System.out.println("Try programiz.pro");
-            List<Object> list = List.of(1,2,List.of(1,2,3, List.of(1,2)));
-            List<Integer> flatternList = new ArrayList<Integer>();
+                for (String s : strs) {
+                    char[] arr = s.toCharArray();
+                    Arrays.sort(arr);
+                    String key = new String(arr);
 
-            flatter(list, flatternList);
-        }
-        public static void flatter(List<?> list, List<Integer> f){
-
-            for(Object lis : list){
-                if(lis instanceof Integer){
-
-                    f.add((Integer) lis);
+                    map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
                 }
-                if(lis instanceof List<?>){
 
-                    flatter((List<?>)lis,f);
-                }
+                return new ArrayList<>(map.values());
             }
 
-        }
-
-
+            public static void main(String[] args) {
+                String[] input = {"eat","tea","tan","ate","nat","bat"};
+                System.out.println(groupAnagrams(input));
+            }
 }
